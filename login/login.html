@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-container hr {
+            margin: 20px 0;
+        }
+        .login-container h1 {
+            margin-bottom: 20px;
+        }
+        .login-container .alert {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="text-center mb-3">
+            <a class="btn btn-warning" href="/Project-github/main.html">Əsas səhifə</a>
+        </div>
+        <hr>
+        <div>
+            <h1 class="text-center">Hesaba daxil olmaq</h1>
+        </div>
+        
+        <div class="alert alert-success" id="login-success-alert">Məlumatlar doğrudur.</div>
+        <div class="alert alert-danger" id="login-error-alert">Məlumatlar yanlışdır.</div>
+
+        <form class="mt-3 was-validated" onsubmit="onLogin(event)" id="hesabyarat">
+            <div class="mb-3">
+                <label for="username" class="form-label">İstifadəçi Adı:</label>
+                <input type="text" class="form-control" minlength="2" maxlength="30" required id="username" placeholder="">
+                <div class="invalid-feedback">Boş qoymayın. Minimum 2 maksimum 30 simvol ola bilər.</div>
+                <div class="valid-feedback">Məlumatlar düzgündür.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Şifrəniz:</label>
+                <input type="password" class="form-control" minlength="2" maxlength="30" required id="password" placeholder="">
+                <div class="invalid-feedback">Boş qoymayın. Minimum 2 maksimum 30 simvol ola bilər.</div>
+                <div class="valid-feedback">Məlumatlar düzgündür.</div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Daxil ol</button>
+        </form>
+
+        <hr>
+        <div class="text-center">
+            <p class="text-secondary">Hesabin yoxdur? <a class="btn btn-primary btn-sm mx-1" href="/Project-github/create/form.html">Hesab yarat</a></p>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css"/>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script src="https://kit.fontawesome.com/731322a2ff.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="mycomp.css">
+    <title>TechnoAz | Mənim Komputerlərim</title>
+    <link rel="icon" href="/Project-github/img/computer-solid.svg">
+</head>
+<body>
+
+    <div class="container-fluid" id="main-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container mt-5">
+                <a class='btn btn-warning' href='/Project-github/main.html'>Əsas Səhifə</a>
+                <button class="btn btn-primary newkomp" > <i class="fa-solid fa-plus"></i>  Yeni Komputer</button>
+               
+                <hr>
+                <div class="computers-table">
+                    <table class="table table-bordered table-striped" id="computers-table-element">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%">ID:</th>
+                                <th style="width: 30%;">Ad:</th>
+                                <th style="width: 20%;">Şəkil:</th>
+                                <th style="width: 15%;">Qiymət:</th>
+                                <th style="width: 25%;">Əməliyyat Sistemi:</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table" style="font-size: 15px;">
+                            <tr>
+                                <td>0</td>
+                                <td>Komputer Example</td>
+                                <td><img src="" alt=""></td>
+                                <td>1000</td>
+                                <td><button class=" btn btn-danger">Sil</button>  
+                                    <button class=" btn btn-primary">Redaktə</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="save-computer-modal" class="d-none">
+        <div id="save-computer-modal-content">
+            <div style="overflow: auto; margin-bottom: 5px;">
+                <span id="close-button">X</span>
+            </div>
+            <h1  style="text-align: center; color: blue;" id="save-computer-header-message"></h1>
+            <div id="save-computer-modal-form-div">
+                <form action="" id="save-computer-modal-form" class="was-validated" >
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="category">Kateqoriya</label>
+                                <select  id="category" class="form-control">
+                                    <option value="Asus">Asus</option>
+                                    <option value="Acer">Acer</option>
+                                    <option value="Lenevo">Lenevo</option>
+                                    <option value="Dell">Dell</option>
+                                    <option value="Hp">Hp</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-name">Ad</label>
+                                <input type="text" class="form-control" id="name" required minlength="2" maxlength="30">
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Bos qoymayın. Ad, minimum 2, maksimum 30 simvol ola bilər.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-price">Qiymət</label>
+                                <input type="number"  class="form-control" id="price" required min="100" max="15000">
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Boş qoymayın. Qiymət, minimum 100, maksimum 15000 AZN ola bilər.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Telefon</label>
+                                <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="phone" required placeholder="Format:xxx-xxx-xxxx">
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Boş qoymayın.Telefon nömrəsi, minimum 4, maksimum 10 simvol ola bilər.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-description">Təsvir</label>
+                                <input type="text"  class="form-control" id="tesvir" required minlength="15" maxlength="300">
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Boş qoymayın.Təsvir minimum 15, maksimum 300 simvol ola bilər.</div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-isNew">Yeni</label>
+                                <select  id="yoxla" class="form-control">
+                                    <option value="beli">Bəli</option>
+                                    <option value="Xeyr">Xeyr</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-image">Şəkil</label>
+                                <input type="text"   class="form-control sekil-1" id="image" required onchange="imageToBase(this)">
+                                <div class="col-md-4">
+                                <img id="prewiew" src="" alt=""></a> 
+                                </div>
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Boş qoymayın.</div>
+                            </div>
+                            <div>
+                                <img src="" alt="Bu linkde sekil yoxdur" style="display: none;" id="computer-image-show">
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="computer-ram">Əməli Yaddaş(GB):</label>
+                                <input type="number" class="form-control" id="ram"  required min="2" max="96" step="1">
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Boş qoymayın. Əməli Yaddaş minimum 2 GB, maksimum 96 GB ola bilər.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-cpu">Mərkəzi prosessor(CPU):</label>
+                                <input type="text" class="form-control" id="cpu"  required minlength="2" maxlength="100">
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Boş qoymayın.CPU minimum i2, maksimum i9  ola bilər.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-drive">Daimi yaddaş(GB):</label>
+                                <input type="number"  class="form-control" id="gb"  required min="2" max="1000">
+                                <div class="valid-feedback">Doğrudur.</div>
+                                <div class="invalid-feedback">Boş qoymayın.Daimi Yaddaş minimum 2 GB, maksimum 1000 GB ola bilər.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-drive-type">Daimi yaddaş tipi:</label>
+                                <select  id="yaddas" class="form-control">
+                                    <option value="hdd">HDD</option>
+                                    <option value="ssd">SSD</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-drive-type">Kompüter (OS)</label>
+                                <select  id="yaddas" class="form-control">
+                                    <option value="win">Windows</option>
+                                    <option value="mac">MacOs</option>
+                                    <option value="linux">KaliLinux</option>
+                                    <option value="diger">Digər....</option>
+                                </select>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="computer-video-card">Video kart(GB)</label>
+                                <input type="number"  class="form-control" id="video-card"  required min="2" max="30">
+                                <div class="valid-feedback">Doğrudur</div>
+                                <div class="invalid-feedback">Boş qoymayın.Video Kart, minimum 2 GB, maksimum 30 GB ola bilər.</div>
+                            </div>
+                        </div>
+                    </div>
+                       
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-success" type="submit" id="saveBtn" >Yadda saxla</button>
+                            <button class="btn btn-danger" type="reset" id="resetBtn" >Sıfırla</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="image-modal" class="image-modal">
+    <span id="image-modal-close" class="image-modal-close">&times;</span>
+    <img class="image-modal-content" id="image-modal-img">
+</div>
+
+
+    <script>
+           
+ 
+$(document).ready(function () {
+
+    $("#computers-table-element").DataTable();
+
+
+    $(".newkomp").click(function () {
+        $("#save-computer-modal").removeClass("d-none");
+    });
+    $("#close-button").click(function () {
+        $("#save-computer-modal").addClass("d-none");
+    });
+
+    var kompArr;
+    var yoxla = false;
+    if (localStorage.getItem(`komp`)) {
+        kompArr = JSON.parse(localStorage.getItem(`komp`))
+    } else
+        kompArr = [];
+
+    $("#saveBtn").click(function () {
+            console.log($("#prewiew").attr("src"));
+            let img = $("#image").val();
+            var obj = {
+                category: $("#category").val(),
+                name: $("#name").val(),
+                price: $("#price").val(),
+                telefon: $("#phone").val(),
+                tesvir: $("#tesvir").val(),
+                yoxla: $("#yoxla").val(),
+                img: img,
+                ram: $("#ram").val(),
+                cpu: $("#cpu").val(),
+                DaimiYaddas: $("#gb").val(),
+                yaddasTipi: $("#yaddas").val(),
+                os: $("#os").val(),
+                videoCard: $("#video-card").val(),
+                reng :$("reng").val
+            }
+            kompArr.push(obj);
+            let json = JSON.stringify(kompArr);
+            localStorage.setItem(`komp`, json);
+    
+
+    });
+  
+
+
+if(localStorage.getItem(`komp`)){
+    var js = JSON.parse(localStorage.getItem(`komp`));
+    for (var i = 0; i < js.length; i++) {
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.innerText = i + 1;
+        var td2 = document.createElement("td");
+        td2.innerText = js[i].category;
+        var td3 = document.createElement("td");
+        var image = document.createElement("img");
+        image.setAttribute("id", `image-komp-new${i}`);
+        image.setAttribute("src", js[i].img);
+        var td4 = document.createElement("td");
+        td4.innerText = js[i].price;
+        var td5 = document.createElement("td");
+        var button = document.createElement("button");
+        button.classList.add("btn");
+        button.classList.add("btn-danger");
+        button.classList.add("sil");
+        button.innerText = "Sil";
+        button.setAttribute('sil_id', i);
+        var button2 = document.createElement("button");
+        button2.innerText = "Redaktə";
+        button2.classList.add("btn");
+        button2.classList.add("btn-primary");
+        button2.setAttribute('id',i);
+        button2.classList.add("redakte");
+        td5.appendChild(button);
+        td5.appendChild(button2);
+        td3.appendChild(image);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        $('#table').append(tr);
+    }
+} 
+
+    
+for (let i = 0; i < js.length; i++) {
+$(`#image-komp-new${i}`).click(function(){
+    $(".my-modal-all").css({"display":"flex"})
+        $(".my-modal-photo").css({"background":`url(${js[i].img}`})
+
+        $(".my-modal-photo").css({"background-repeat":"no-repeat"})
+        $(".my-modal-photo").css({"background-size":"cover"})
+    })
+}
+
+$("#duyme").click(function(){
+    $(".my-modal-all").css({"display":"none"})
+})
+    $(".redakte").click(function () {
+        var attr=$(this).attr('id');
+        var js = JSON.parse(localStorage.getItem(`komp`));
+        $("#save-computer-modal").removeClass("d-none");
+            $("#name").val( js[attr].name);
+            $("#price").val( js[attr].price);
+            $("#phone").val(js[attr].telefon);
+            $("#tesvir").val(js[attr].tesvir);
+            $("#yoxla").val(js[attr].yoxla);
+            $("#ram").val(js[attr].ram);
+            $("#cpu").val(js[attr].cpu);
+            $("#gb").val(js[attr].DaimiYaddas);
+            $("#yaddas").val(js[attr].yaddasTipi);
+            $("#os").val(js[attr].os); 
+            $("#video-card").val( js[attr].videoCard);
+    });
+    $(".sil").click(function(){
+
+        if (confirm("Kompüteri silməyə əminsiniz?")) {
+           var js=JSON.parse(localStorage.getItem('komp'));
+           var attr=$(this).attr('sil_id');
+           const arr= js.splice(attr,1);
+           localStorage.setItem('komp',JSON.stringify(js))
+        };
+        
+        window.location.reload();
+ 
+
+    })
+    
+});
+function imageToBase(b) {
+    document.querySelector('#prewiew').src = b.value
+} 
+
+// Open modal
+$(document).on("click", "img", function () {
+    var imageUrl = $(this).attr("src");
+    $("#image-modal-img").attr("src", imageUrl);
+    $("#image-modal").css("display", "block");
+});
+
+// Close modal 
+$("#image-modal-close").click(function () {
+    $("#image-modal").css("display", "none");
+});
+
+    </script>
+</body>
+</html>
